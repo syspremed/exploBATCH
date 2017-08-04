@@ -1,0 +1,6 @@
+library(exploBATCHbreast)
+install_github("gnyamundanda/ExploBATCH/exploBATCHcolon")
+library(Devtool)
+library(Devtools)
+library(devtools)
+install_github("gnyamundanda/ExploBATCH/exploBATCHcolon")

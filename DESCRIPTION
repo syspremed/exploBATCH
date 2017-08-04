@@ -1,0 +1,16 @@
+Package: exploBATCH
+Type: Package
+Title: Explore batch effect (exploBATCH) is a package for discovering and correcting   
+       for batch effect using an approach in Nyamundanda et al (2017).
+Version: 1.0
+Date: 2017-04-19
+Author: Gift Nyamundanda gift.nyamundanda@icr.ac.uk 
+Maintainer: Gift Nyamundanda <gift.nyamundanda@icr.ac.uk>
+Description: Contains R scripts for performing formal statistical tests to detect batch effect in genomic datasets, 
+             and correct for batch effect using an approach detailed in Nyamundanda et al (2016). 
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.12.10)
+LinkingTo: Rcpp, RcppArmadillo, RcppEigen
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -1,0 +1,31 @@
+emQ <-
+function(q,Yc,tYc,S,tmp,tp,p,Ip,Np,Nvp,C2p,picon,IQ,penalty,eps,repV,V){
+  Iq=IQ[[q]]
+  Sig=abs(sum(tmp$val[(q+1):tp])/(tp-q))
+  SIG=Sig*Iq
+  W=tmp$vec[,1:q]
+  iM=chol.inv(crossprod(W)+SIG)
+  iMtW=tcrossprod(iM,W)
+  ll=lla=repV
+  tol=eps+1
+  v=0
+  while(tol>eps){
+    v=v+1
+    k=fM(S,W)
+    W=k%*%chol.inv(SIG+fM(iMtW,k))
+    MLESig=mdiag(S-k%*%tcrossprod(iM,W),p)/p
+    Sig=(Np*MLESig+C2p)/Nvp
+    SIG=Sig*Iq
+    M=crossprod(W)+SIG
+    iM=chol.inv(M)
+    iMtW=tcrossprod(iM,W)
+    InvS=(Ip-W%*%iMtW)/Sig
+    MhalDist=rowSums(fM(Yc,InvS)*Yc)
+    logdetD=p*log(Sig)+log(det(M/Sig))
+    ll[v]=sum(-picon-.5*logdetD-.5*MhalDist)
+    converge=Aitkenf(ll,lla,v,eps)
+    tol=converge[[1]]
+    lla[v]=converge[[2]]
+    if(v==V){tol=eps-1}}
+  cat("q = ", q, ": PPCA converged.\n\n")
+  Bicq=2*ll[v]-penalty[[q]]}
