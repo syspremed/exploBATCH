@@ -2,9 +2,11 @@
 title: <center> An introduction to exploBATCH <center>
 author: <center> Gift Nyamundanda, Pawan Poudel, Yatish Patil and Anguraj Sadanandam <center>
 #date: "`r Sys.Date()`"
-output:
-  md_document: 
-    variant: markdown_github
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{exploBTACH manual}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 <style>
