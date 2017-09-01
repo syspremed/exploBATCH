@@ -124,7 +124,7 @@ expBATCH <-function(D,batchCL,Conf=NA,mindim=2,maxdim=3,method="ppcca",scale="un
     sink()
     ############# assess combat corrected data
     dir.create("assessComBat", showWarnings = FALSE)
-    cat("Assessing for batch effect after CamBat...\n\n")
+    cat("Assessing for batch effect after ComBat...\n\n")
     ## preprocess combat corrected data
     sink(file="undesired_output.txt")
     Ycbs=scalingfn(t(comres),type=scale)     # scaling
