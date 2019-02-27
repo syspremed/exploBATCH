@@ -162,7 +162,15 @@ expBATCH <-function(D,batchCL,Conf=NA,mindim=2,maxdim=3,method="ppcca",scale="un
       if((N>250)&(p>400)){mindim=maxdim=200}
       if(maxdim>ncol(tmp$vec)){mindim=maxdim=ncol(tmp$vec)-2}
       designX=as.matrix(model.matrix(~factor(batchCL))[,-1])
-      res11<-ppcca(Y=Ys,Yc,tYc,X=designX,S,sumdiS,muhat,tp,tmp,mindim,maxdim,n.cores=n.cores)      # run ppcca
+            
+      res11=NULL
+      while((is.null(res11))&(maxdim>150)){
+        tryCatch({
+          res11 <- ppcca(Y = Ys, Yc, tYc, X = designX, S, sumdiS, muhat, tp, tmp, mindim, maxdim, n.cores = n.cores)
+        },error=function(ex) {print(ex$message)})
+        mindim<-maxdim<-(maxdim-1)
+      }
+      
       ppccaDat<-correctBatch(res11,designX,Yus,batchCL,ngrps,grps,Conf,nt,cGsub,comres,theme,type)
       save.image("Rworkspace/correctBATCH.RData")
       sink()
